@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ViajáLigero - Envía tu equipaje sin estrés</title>
   <style>
+    :root {
+      --primary-color: #1c5dbb;
+      --accent-color: #337ddf;
+      --background-light: #eef3fb;
+    }
+
     body {
       font-family: sans-serif;
       margin: 0;
@@ -13,10 +19,14 @@
       color: #333;
     }
     header {
-      background: #0e74ff;
+      background: var(--primary-color);
       color: white;
       padding: 2rem;
       text-align: center;
+    }
+    header img {
+      height: 80px;
+      margin-bottom: 10px;
     }
     h1 {
       margin: 0 0 0.5rem;
@@ -39,7 +49,7 @@
       flex-wrap: wrap;
       justify-content: space-around;
       padding: 2rem;
-      background: #eaf3ff;
+      background: var(--background-light);
     }
     .feature {
       max-width: 300px;
@@ -52,12 +62,12 @@
     .cta {
       text-align: center;
       padding: 2rem;
-      background: #0e74ff;
+      background: var(--primary-color);
       color: white;
     }
     .cta button {
       background: white;
-      color: #0e74ff;
+      color: var(--primary-color);
       font-weight: bold;
       border: none;
       padding: 1rem 2rem;
@@ -69,35 +79,36 @@
       text-align: center;
       padding: 1rem;
       font-size: 0.9rem;
-      background: #333;
+      background: #222;
       color: white;
     }
   </style>
 </head>
 <body>
   <header>
+  <img  class="logo" src="\image.png" alt="Logo ViajáLigero">
     <h1>ViajáLigero</h1>
-    <p>Tu equipaje, sin estrés. Nos encargamos nosotros.</p>
+    <p>Recogemos tu equipaje antes de tu vuelo. Vos solo viajá cómoda.</p>
   </header>
 
   <section class="hero">
-    <img src="viajaligero-anuncio.png" alt="Madre con niños y maletas en aeropuerto">
-    <h2>¿Cansada de cargar todas las maletas tú sola?</h2>
-    <p>Con ViajáLigero, recogemos tus valijas en casa y las llevamos al aeropuerto. Simple, seguro y cómodo.</p>
+    <img src="\viajaligero-anuncio.png" alt="Madre con niños y maletas en aeropuerto">
+    <h2>Olvidate del estrés previo al viaje</h2>
+    <p>Con ViajáLigero, pasamos a buscar tu equipaje hasta 3 días antes de tu vuelo, hacemos el check-in por vos y lo despachamos en el aeropuerto. Vos solo tenés que llegar a abordar.</p>
   </section>
 
   <section class="features">
     <div class="feature">
-      <h3>✈️ Puerta a puerta</h3>
-      <p>Recogemos y entregamos tu equipaje donde lo necesites.</p>
+      <h3>✈️ Recolección anticipada</h3>
+      <p>Solicitá la recogida de tu equipaje hasta 72 horas antes del viaje.</p>
+    </div>
+    <div class="feature">
+      <h3>📦 Check-in incluido</h3>
+      <p>Nosotros nos encargamos del despacho para que llegues sin apuros.</p>
     </div>
     <div class="feature">
       <h3>🔹 Seguimiento en tiempo real</h3>
-      <p>Conocé la ubicación de tu equipaje desde tu celular.</p>
-    </div>
-    <div class="feature">
-      <h3>🛍️ Seguro contra extravíos</h3>
-      <p>Tu tranquilidad es lo primero. Incluí cobertura opcional.</p>
+      <p>Vigilá tu equipaje desde el celular mientras vos viajás tranquila.</p>
     </div>
   </section>
 
