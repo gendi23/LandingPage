@@ -1,124 +1,718 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ViajáLigero - Envía tu equipaje sin estrés</title>
-  <style>
-    :root {
-      --primary-color: #1c5dbb;
-      --accent-color: #337ddf;
-      --background-light: #eef3fb;
-    }
-
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f5f5f5;
-      color: #333;
-    }
-    header {
-      background: var(--primary-color);
-      color: white;
-      padding: 2rem;
-      text-align: center;
-    }
-    header img {
-      height: 80px;
-      margin-bottom: 10px;
-    }
-    h1 {
-      margin: 0 0 0.5rem;
-    }
-    p {
-      margin: 0;
-    }
-    .hero {
-      text-align: center;
-      padding: 2rem;
-      background: white;
-    }
-    .hero img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-    .features {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      padding: 2rem;
-      background: var(--background-light);
-    }
-    .feature {
-      max-width: 300px;
-      margin: 1rem;
-      background: white;
-      border-radius: 8px;
-      padding: 1rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    .cta {
-      text-align: center;
-      padding: 2rem;
-      background: var(--primary-color);
-      color: white;
-    }
-    .cta button {
-      background: white;
-      color: var(--primary-color);
-      font-weight: bold;
-      border: none;
-      padding: 1rem 2rem;
-      font-size: 1.2rem;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    footer {
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      background: #222;
-      color: white;
-    }
-  </style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Traslado de Equipaje al Aeropuerto</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style id="app-style">
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --light-color: #f0f9ff;
+            --dark-color: #172554;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .bg-primary-custom {
+            background-color: var(--primary-color);
+        }
+        
+        .text-primary-custom {
+            color: var(--primary-color);
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://cdn.pixabay.com/photo/2017/06/05/11/01/airport-2373727_1280.jpg');
+            background-size: cover;
+            background-position: center;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+        
+        .cta-btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .cta-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar {
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            background-color: white !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar.scrolled .navbar-brand, 
+        .navbar.scrolled .nav-link {
+            color: var(--dark-color) !important;
+        }
+        
+        .step-card {
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .step-number {
+            background-color: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .benefit-card {
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+            background-color: white;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: 100%;
+        }
+        
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .swiper {
+            padding: 30px 10px;
+        }
+        
+        .quote-icon {
+            font-size: 30px;
+            color: var(--primary-color);
+            opacity: 0.2;
+        }
+        
+        .reservation-form {
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+        }
+        
+        .form-control {
+            padding: 12px 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background-color: var(--light-color);
+            color: var(--primary-color);
+        }
+        
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(0,0,0,.125);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .fixed-cta {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: 60vh;
+                text-align: center;
+            }
+            
+            .reservation-form {
+                padding: 25px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-  <img  class="logo" src="/image.png" alt="Logo ViajáLigero">
-    <p>Recogemos tu equipaje antes de tu vuelo. Vos solo viajá cómoda.</p>
-  </header>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="javascript:void(0)">
+                <i class="fas fa-suitcase-rolling me-2"></i>Viaja Ligero
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#como-funciona">Cómo Funciona</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#beneficios">Beneficios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonios">Testimonios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#faq">FAQ</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn cta-btn" href="#reserva">Reservá Ahora</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-  <section class="hero">
-    <img src="/viajaligero-anuncio.png" alt="Madre con niños y maletas en aeropuerto">
-    <h2>Olvidate del estrés previo al viaje</h2>
-    <p>Con ViajáLigero, pasamos a buscar tu equipaje hasta 3 días antes de tu vuelo, hacemos el check-in por vos y lo despachamos en el aeropuerto. Vos solo tenés que llegar a abordar.</p>
-  </section>
+    <!-- Hero Section -->
+    <section class="hero-section" id="inicio">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">Viajá sin cargar equipaje.</h1>
+                    <h2 class="h2 mb-4">Nosotros lo llevamos al aeropuerto por vos.</h2>
+                    <p class="lead mb-5">Disfrutá de tu viaje desde el primer momento sin preocuparte por tu equipaje.</p>
+                    <a href="#reserva" class="btn cta-btn btn-lg">
+                        <i class="fas fa-luggage-cart me-2"></i>Reservá tu traslado de equipaje ahora
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section class="features">
-    <div class="feature">
-      <h3>✈️ Recolección anticipada</h3>
-      <p>Solicitá la recogida de tu equipaje hasta 72 horas antes del viaje.</p>
+    <!-- Cómo Funciona Section -->
+    <section class="py-5 py-md-6 bg-light" id="como-funciona">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Cómo Funciona</h2>
+                <p class="lead text-muted">Servicio simple en tres pasos</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="step-card bg-white p-4">
+                        <div class="d-flex justify-content-center">
+                            <div class="step-number">1</div>
+                        </div>
+                        <div class="text-center">
+                            <i class="fas fa-laptop text-primary-custom fa-3x mb-3"></i>
+                            <h3 class="h4">Reservá tu traslado</h3>
+                            <p>Completá el formulario en nuestra web con la información de tu vuelo y equipaje.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="step-card bg-white p-4">
+                        <div class="d-flex justify-content-center">
+                            <div class="step-number">2</div>
+                        </div>
+                        <div class="text-center">
+                            <i class="fas fa-home text-primary-custom fa-3x mb-3"></i>
+                            <h3 class="h4">Retiramos tu equipaje</h3>
+                            <p>Pasamos por tu casa u hotel en la fecha y hora que nos indiques para recoger tu equipaje.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="step-card bg-white p-4">
+                        <div class="d-flex justify-content-center">
+                            <div class="step-number">3</div>
+                        </div>
+                        <div class="text-center">
+                            <i class="fas fa-plane-departure text-primary-custom fa-3x mb-3"></i>
+                            <h3 class="h4">Entregamos en el aeropuerto</h3>
+                            <p>Llevamos tu equipaje al aeropuerto y te enviamos una confirmación cuando esté listo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios Section -->
+    <section class="py-5 py-md-6" id="beneficios">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Beneficios</h2>
+                <p class="lead text-muted">¿Por qué elegir nuestro servicio?</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3 class="h5 fw-bold">Ahorro de tiempo</h3>
+                        <p>Evitá las largas filas y el tiempo de espera en el aeropuerto.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-hand-peace"></i>
+                        </div>
+                        <h3 class="h5 fw-bold">Viaje cómodo</h3>
+                        <p>Desplazate sin cargar peso y sin preocupaciones durante tu trayecto.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="h5 fw-bold">Seguro incluido</h3>
+                        <p>Seguimiento en tiempo real y equipaje completamente asegurado.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h3 class="h5 fw-bold">Check-in asistido</h3>
+                        <p>Opción de servicio de check-in para tu equipaje (servicio adicional).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios Section -->
+    <section class="py-5 py-md-6 bg-light" id="testimonios">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Testimonios</h2>
+                <p class="lead text-muted">Lo que nuestros clientes dicen sobre nosotros</p>
+            </div>
+            <div class="swiper testimonialSwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="https://cdn.pixabay.com/photo/2017/02/16/23/10/smile-2072907_1280.jpg" alt="Cliente" class="avatar me-3">
+                                <div>
+                                    <h5 class="mb-0">Lucía Martínez</h5>
+                                    <small class="text-muted">Buenos Aires</small>
+                                </div>
+                            </div>
+                            <i class="fas fa-quote-left quote-icon mb-3"></i>
+                            <p class="mb-0">¡Servicio excelente! Pude llegar al aeropuerto sin el estrés de cargar maletas. Cumplieron con el horario exacto y el personal fue muy amable.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="https://cdn.pixabay.com/photo/2018/02/16/14/38/portrait-3157821_1280.jpg" alt="Cliente" class="avatar me-3">
+                                <div>
+                                    <h5 class="mb-0">Martín Gómez</h5>
+                                    <small class="text-muted">Córdoba</small>
+                                </div>
+                            </div>
+                            <i class="fas fa-quote-left quote-icon mb-3"></i>
+                            <p class="mb-0">La mejor inversión para mis viajes. El seguimiento en tiempo real me dio tranquilidad y la entrega fue perfecta. ¡Lo recomiendo sin dudas!</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="testimonial-card">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="https://cdn.pixabay.com/photo/2018/04/27/03/50/woman-3353699_1280.jpg" alt="Cliente" class="avatar me-3">
+                                <div>
+                                    <h5 class="mb-0">Carolina Vega</h5>
+                                    <small class="text-muted">Mendoza</small>
+                                </div>
+                            </div>
+                            <i class="fas fa-quote-left quote-icon mb-3"></i>
+                            <p class="mb-0">Viajé con mis dos hijos pequeños y poder ir al aeropuerto sin equipaje fue una bendición. El servicio es puntual y confiable. ¡Volveré a usarlo!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reserva Section -->
+    <section class="py-5 py-md-6 bg-primary-custom text-white" id="reserva">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 mb-4 mb-lg-0">
+                    <h2 class="fw-bold">Reservá tu traslado de equipaje</h2>
+                    <p class="lead">Completá el formulario y nos pondremos en contacto contigo en menos de 24 horas para confirmar tu reserva.</p>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle me-2"></i> Confirmación inmediata
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-check-circle me-2"></i> Pago seguro online
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle me-2"></i> Cancelación gratuita hasta 48 horas antes
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-7">
+                    <div class="reservation-form">
+                        <form id="reservationForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="nombre" class="form-label text-dark">Nombre completo</label>
+                                        <input type="text" class="form-control" id="nombre" placeholder="Tu nombre" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label text-dark">Email</label>
+                                        <input type="email" class="form-control" id="email" placeholder="correo@ejemplo.com" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="telefono" class="form-label text-dark">Teléfono</label>
+                                        <input type="tel" class="form-control" id="telefono" placeholder="+54 9 11 1234-5678" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="vuelo" class="form-label text-dark">Número de vuelo</label>
+                                        <input type="text" class="form-control" id="vuelo" placeholder="AR1234" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="detalles" class="form-label text-dark">Detalles adicionales</label>
+                                <textarea class="form-control" id="detalles" rows="3" placeholder="Número de maletas, dirección de recogida, fecha de vuelo, etc."></textarea>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="terminos" required>
+                                <label class="form-check-label text-dark" for="terminos">
+                                    Acepto los términos y condiciones del servicio
+                                </label>
+                            </div>
+                            <button type="submit" class="btn cta-btn w-100 py-3">
+                                <i class="fas fa-paper-plane me-2"></i>Reservar ahora
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-5 py-md-6" id="faq">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Preguntas Frecuentes</h2>
+                <p class="lead text-muted">Todo lo que necesitas saber sobre nuestro servicio</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="accordionFAQ">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    ¿Qué aeropuertos cubren?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionFAQ">
+                                <div class="accordion-body">
+                                    Actualmente, ofrecemos nuestro servicio en los principales aeropuertos de Argentina: Aeropuerto Internacional de Ezeiza (EZE), Aeroparque Jorge Newbery (AEP), Aeropuerto Internacional de Córdoba (COR) y Aeropuerto Internacional de Mendoza (MDZ). Estamos en proceso de expandir nuestros servicios a más destinos.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    ¿Qué pasa si hay un cambio de vuelo?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionFAQ">
+                                <div class="accordion-body">
+                                    Entendemos que los cambios de vuelo son comunes. Si tu vuelo cambia, simplemente contáctanos a través de nuestro número de atención al cliente o por email y ajustaremos la entrega de tu equipaje según tu nuevo horario sin costo adicional, siempre y cuando nos avises con al menos 24 horas de anticipación.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    ¿El equipaje está asegurado?
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionFAQ">
+                                <div class="accordion-body">
+                                    Sí, todo el equipaje transportado está asegurado. Nuestro seguro cubre hasta $1,000 USD por maleta en caso de daño o pérdida. También ofrecemos opciones de seguro adicional para artículos de mayor valor. Durante todo el proceso, podrás rastrear tu equipaje en tiempo real a través de nuestra aplicación móvil.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                    ¿Con cuánta anticipación debo reservar?
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionFAQ">
+                                <div class="accordion-body">
+                                    Recomendamos realizar la reserva con al menos 48 horas de anticipación para garantizar la disponibilidad del servicio. Sin embargo, también ofrecemos un servicio express con un recargo adicional para reservas con menos de 24 horas de anticipación, sujeto a disponibilidad.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    ¿Cómo funciona el pago?
+                                </button>
+                            </h2>
+                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionFAQ">
+                                <div class="accordion-body">
+                                    Aceptamos diferentes métodos de pago: tarjetas de crédito/débito, transferencia bancaria y aplicaciones como Mercado Pago. Puedes elegir entre pagar el 50% por adelantado y el resto después del servicio, o pagar el monto completo al momento de la reserva para recibir un 10% de descuento.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h5 class="mb-3">Viaja Ligero</h5>
+                    <p class="mb-3">Hacemos que viajar sea más fácil llevando tu equipaje al aeropuerto por ti. Servicio profesional, puntual y seguro.</p>
+                    <div class="d-flex">
+                        <a href="javascript:void(0)" class="social-icon">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="javascript:void(0)" class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="javascript:void(0)" class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="javascript:void(0)" class="social-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Contacto</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <i class="fas fa-envelope me-2"></i> info@ViajaLigero
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-phone me-2"></i> +54 9 11 2345-6789
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt me-2"></i> Av. Corrientes 1234, CABA, Argentina
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="mb-3">Horario de atención</h5>
+                    <p>Lunes a Viernes: 8:00 - 20:00</p>
+                    <p>Sábados: 9:00 - 15:00</p>
+                    <p>Domingos: Cerrado</p>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="mb-0">&copy; 2025 Viaja Ligero Todos los derechos reservados.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="javascript:void(0)" class="text-white text-decoration-none me-3">Términos y Condiciones</a>
+                    <a href="javascript:void(0)" class="text-white text-decoration-none">Política de Privacidad</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Fixed CTA Button (Mobile) -->
+    <div class="fixed-cta">
+        <a href="#reserva" class="btn cta-btn">
+            <i class="fas fa-luggage-cart me-2"></i>Reservá ahora
+        </a>
     </div>
-    <div class="feature">
-      <h3>📦 Check-in incluido</h3>
-      <p>Nosotros nos encargamos del despacho para que llegues sin apuros.</p>
-    </div>
-    <div class="feature">
-      <h3>🔹 Seguimiento en tiempo real</h3>
-      <p>Vigilá tu equipaje desde el celular mientras vos viajás tranquila.</p>
-    </div>
-  </section>
 
-  <section class="cta">
-    <h2>¡Probá nuestro servicio gratuito!</h2>
-    <p>Durante el mes de lanzamiento ofrecemos pruebas limitadas 100% gratis. Reservá tu lugar ahora.</p>
-    <button onclick="window.location.href='https://forms.gle/tu-formulario'">Reservar prueba gratuita</button>
-  </section>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script id="app-script">
+        // Initialize Swiper for testimonials
+        const swiper = new Swiper('.testimonialSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                },
+                992: {
+                    slidesPerView: 3,
+                }
+            }
+        });
 
-  <footer>
-    &copy; 2025 ViajáLigero. Todos los derechos reservados.
-  </footer>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            // Show/hide fixed CTA button
+            const fixedCta = document.querySelector('.fixed-cta');
+            if (window.scrollY > 300) {
+                fixedCta.style.display = 'block';
+            } else {
+                fixedCta.style.display = 'none';
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const navbarCollapse = document.querySelector('.navbar-collapse');
+                    if (navbarCollapse.classList.contains('show')) {
+                        document.querySelector('.navbar-toggler').click();
+                    }
+                }
+            });
+        });
+
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                nombre: document.getElementById('nombre').value,
+                email: document.getElementById('email').value,
+                telefono: document.getElementById('telefono').value,
+                vuelo: document.getElementById('vuelo').value,
+                detalles: document.getElementById('detalles').value
+            };
+            
+           fetch('https://script.google.com/macros/s/AKfycbyuAnbpoqpDj9Q2pPGqKSD5sOxgXDa4divV9BHU85pFm8DwNm23XnGWQy93mNQ13cc7/exec', {
+			method: 'POST',
+			mode: 'no-cors',  // <--- importante para que no te bloquee
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(formData)
+		})
+            .then(response => {
+                // In no-cors mode, the response is opaque. We assume success if no error occurred.
+                alert('¡Gracias por tu reserva! Te contactaremos pronto.');
+                document.getElementById('reservationForm').reset();
+            })
+            .catch(error => {
+                console.error('Error al enviar la reserva:', error);
+                alert('Error al enviar la reserva. Por favor, intenta nuevamente.');
+            });
+        });
+		
+    </script>
 </body>
 </html>
